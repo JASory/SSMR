@@ -1,17 +1,17 @@
 # SSMR
 
 Single-Shot Miller-Rabin (SSMR) is an algorithm for primality testing using only a single strong fermat test to check if a number under a 
-certain bound is prime.Like the related [https://github.com/JASory/machine-prime]{Machine-prime} two functions are provided, is_prime and is_prime_wc. 
+certain bound is prime.Like the related [Machine-prime](https://github.com/JASory/machine-prime) two functions are provided, is_prime and is_prime_wc. 
 Is_prime is optimised for the average case and uses trial division in addition to the fermat test.Is_prime_wc is optimised for the worst case of checking primes, 
 it may however pass even composites. This is because checking for divisibility by 2 is extremely fast,and by only constructing tests against 
 odd composites we can double the interval we can construct the test. As well as the fact that most applications of is_prime_wc
 will never encounter even composites.
 
-Like Machine-prime it was also constructed using [https://github.com/JASory/f-analysis]{F-Analysis}, however it is likely not reproducible as the original 
+Like Machine-prime it was also constructed using [F-Analysis](https://github.com/JASory/f-analysis), however it is likely not reproducible as the original 
 algorithm has changed (nor does it need to be as it is much faster to exhaustively prove correctness, than to recalculate).
 
 ## Properties
- - Bound - 2^40 or 1.09 Trillion (actually slightly higher at )
+ - Bound - 2^40 or 1.09 Trillion
  - is_prime_wc Even Composites passed - 36
  - is_prime Average Complexity - 0.21xFermat
  - is_prime_wc Worst-Case Complexity 1.0xFermat
