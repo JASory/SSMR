@@ -2,7 +2,7 @@
 //! of some integer less than 1099620565341 (approximately 1.09 trillion or 2^40). This means that it has the lowest computational complexity
 //! known and is inpractice the fastest published primality test for the provided interval. 
 //!
-//! //! Like [Machine-prime](https://github.com/JASory/machine-prime) SSMR was constructed using 
+//! Like [Machine-prime](https://github.com/JASory/machine-prime) SSMR was constructed using 
 //! [F-Analysis](https://github.com/JASory/f-analysis)
 pub(crate) mod check;
 pub(crate) mod hashbase;
