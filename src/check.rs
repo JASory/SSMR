@@ -76,18 +76,29 @@ fn sprp(p: u64, base: u64, one: u64, npi: u64) -> bool {
 fn core_primality(x: u64) -> bool{
     let npi = mod_inv(x);
     let one = (u64::MAX % x) + 1;
-    
-    let idx = (x as u32).wrapping_mul(1369644076).wrapping_shr(21) as usize;
+    let idx = (x as u32).wrapping_mul(2202620065).wrapping_shr(19) as usize;
     sprp(x, FERMAT_BASE[idx] as u64, one,npi)
 
 }
 
+/// Fast primality in the worst case for all odd integers less than 1099620565341
 pub fn is_prime_wc(x: u64) -> bool{
+  debug_assert!( (x != 0) && (x < 1099620565341) && ([1,4,14,16,18,90,418,1024,
+                                     1248,1714,32208,48228,193152,
+                                     456424,736232,749324,1659364,
+                                     2037906,2157926,2512078,6510588,
+                                     36070710,60809772,439998604,754749144,
+                                     816051496,839707570,929747684,1964560406,
+                                     2705505948,2722237320,3221225472,4382063290,
+                                     7419460496,20524842874,28979528078].contains(&x) == false));
    core_primality(x)
 }
 
+/// Fast primality in the average case, for all integers less than 1099620565341
 pub fn is_prime(x: u64) -> bool{
 
+  debug_assert!(x < 1099620565341);
+  
   if x == 1{
     return false
   }

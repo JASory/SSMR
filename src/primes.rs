@@ -13,7 +13,7 @@ pub(crate) const INV_8 : [u8; 128] = [
 ];
 
 #[rustfmt::skip]
-pub(crate) const PRIME_INV_64 : [u64;48] = [
+pub(crate) const PRIME_INV_64 : [u64;64] = [
 
  	   0xaaaaaaaaaaaaaaab ,   0xcccccccccccccccd ,   0x6db6db6db6db6db7 ,   0x2e8ba2e8ba2e8ba3 ,
 	   0x4ec4ec4ec4ec4ec5 ,   0xf0f0f0f0f0f0f0f1 ,   0x86bca1af286bca1b ,   0xd37a6f4de9bd37a7 ,
@@ -27,9 +27,8 @@ pub(crate) const PRIME_INV_64 : [u64;48] = [
 	   0x1f693a1c451ab30b ,   0x8d07aa27db35a717 ,   0x882383b30d516325 ,   0xed6866f8d962ae7b ,
 	   0x3454dca410f8ed9d ,   0x1d7ca632ee936f3f ,   0x70bf015390948f41 ,   0xc96bdb9d3d137e0d ,
 	   0x2697cc8aef46c0f7 ,   0xc0e8f2a76e68575b ,   0x687763dfdb43bb1f ,   0x1b10ea929ba144cb ,
-	/*   0x1d10c4c0478bbced ,   0x63fb9aeb1fdcd759 ,   0x64afaa4f437b2e0f ,   0xf010fef010fef011 ,
+	   0x1d10c4c0478bbced ,   0x63fb9aeb1fdcd759 ,   0x64afaa4f437b2e0f ,   0xf010fef010fef011 ,
 	   0x28cbfbeb9a020a33 ,   0xff00ff00ff00ff01 ,   0xd624fd1470e99cb7 ,   0x8fb3ddbd6205b5c5 ,
 	   0xd57da36ca27acdef ,   0xee70c03b25e4463d ,   0xc5b1a6b80749cb29 ,   0x47768073c9b97113 ,
 	   0x2591e94884ce32ad ,   0xf02806abc74be1fb ,   0x7ec3e8f3a7198487 ,   0x58550f8a39409d09 ,
-	   0xec9e48ae6f71de15 ,   0x2ff3a018bfce8063 ,   */
 	  ];
