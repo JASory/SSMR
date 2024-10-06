@@ -76,14 +76,14 @@ fn sprp(p: u64, base: u64, one: u64, npi: u64) -> bool {
 fn core_primality(x: u64) -> bool{
     let npi = mod_inv(x);
     let one = (u64::MAX % x) + 1; // 1359738876  //2202620065
-    let idx = (x as u32).wrapping_mul(1359738876).wrapping_shr(18) as usize;
+    let idx = (x as u32).wrapping_mul(2186343638).wrapping_shr(14) as usize;
     sprp(x, FERMAT_BASE[idx] as u64, one,npi)
 
 }
 
 /// Fast primality in the worst case for all odd integers less than 1099620565341
 pub fn is_prime_wc(x: u64) -> bool{
-// SSMR passes some even composites due to the montgomery transform trick
+// SSMR passes some even composites due to the montgomery transform trick (This list is no longer valid)
   debug_assert!( (x != 0) && (x < 1099620565341) && ([1,4,14,16,18,90,418,1024,
                                      1248,1714,32208,48228,193152,
                                      456424,736232,749324,1659364,
