@@ -1,5 +1,7 @@
 # SSMR
 
+WIP - Not all calculations are fully complete, will not be published to crates.io without them
+
 Single-Shot Miller-Rabin (SSMR) is an algorithm for primality testing using only a single strong fermat test to check if a number under a 
 certain bound is prime.Like the related [Machine-prime](https://github.com/JASory/machine-prime) two functions are provided, is_prime and is_prime_wc. 
 Is_prime is optimised for the average case and uses trial division in addition to the fermat test.Is_prime_wc is optimised for the worst case of checking primes, 
@@ -11,8 +13,8 @@ Like Machine-prime it was also constructed using [F-Analysis](https://github.com
 algorithm has changed (nor does it need to be as it is much faster to exhaustively prove correctness, than to recalculate).
 
 ## Properties
- - Bound - 2^40 or 1.09 Trillion
- - is_prime_wc Even Composites passed - 36
+ - Bound (is_prime) - 2^50 or 1.1 Quadrillion
+ - is_prime_wc - Unknown probably errors less than 10K
  - is_prime Average Complexity - 0.21xFermat
  - is_prime_wc Worst-Case Complexity 1.0xFermat
  - Unlike most primality tests both functions have been exhaustively proven to behave exactly as documented, this is possible due to the small interval and their speed.
@@ -37,6 +39,6 @@ factors cannot be greater than sqrt(n),SSMR could be used to find Carmichael num
 ## Shortcomings
 
 Unfortunately SSMR has a current upper bound that precludes most applications in serious research. A specially designed sieve will outperform SSMR in virtually any application, the main barrier is difficulty in designing such a sieve.
-Additionally a general purpose sieve like Kim Walisch's primesieve can already sieve up to 2^40 nearly instantaneously, rendering SSMR effectively useless at generating primes within some interval (Machine-primes purpose). 
+Additionally a general purpose sieve like Kim Walisch's primesieve can already sieve up to 2^50 nearly instantaneously, rendering SSMR effectively useless at generating primes within some interval (Machine-primes purpose). 
 
 This problem means that SSMR is currently relegated to recreational applications, however this is probably sufficient for most casual applications. One rarely needs to generate 900K primes per second, outside of research. 
