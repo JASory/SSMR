@@ -6,7 +6,7 @@ use crate::primes::{INV_8,PRIME_INV_64};
         est = 2u64.wrapping_sub(est.wrapping_mul(n)).wrapping_mul(est);
         est = 2u64.wrapping_sub(est.wrapping_mul(n)).wrapping_mul(est);
         est = 2u64.wrapping_sub(est.wrapping_mul(n)).wrapping_mul(est);
-        est.wrapping_neg()
+        est
  }
  
  fn mont_sub(x: u64, y: u64, n: u64) -> u64 {
@@ -17,17 +17,17 @@ use crate::primes::{INV_8,PRIME_INV_64};
 }
  
   fn mont_prod(x: u64, y: u64, n: u64, npi: u64) -> u64 {
+  
     let interim = x as u128 * y as u128;
-    let tm = (interim as u64).wrapping_mul(npi);
-    let (t, flag) = interim.overflowing_add((tm as u128) * (n as u128));
-    let t = (t >> 64) as u64;
+    let lo = (interim as u64).wrapping_mul(npi);
+    let lo = ((lo as u128 * n as u128)>>64) as u64;
+    let hi = (interim>>64)  as u64;
     
-    if flag {
-        t + n.wrapping_neg()
-    } else if t >= n {
-        t - n
-    } else {
-        t
+    if hi < lo{
+       hi - lo + n
+    }
+    else{
+      hi-lo
     }
  }
  
@@ -51,7 +51,7 @@ fn sprp(p: u64, base: u64, one: u64, npi: u64) -> bool {
     let p_minus = p - 1;
     let twofactor = p_minus.trailing_zeros();
     let d = p_minus >> twofactor;
-
+    
     let mut result = base.wrapping_mul(one);
     
     let oneinv = mont_prod(mont_sub(p,one,p),one,p,npi);
@@ -75,14 +75,15 @@ fn sprp(p: u64, base: u64, one: u64, npi: u64) -> bool {
 
 fn core_primality(x: u64) -> bool{
     let npi = mod_inv(x);
-    let one = (u64::MAX % x) + 1;
-    let idx = (x as u32).wrapping_mul(2202620065).wrapping_shr(19) as usize;
+    let one = (u64::MAX % x) + 1; // 1359738876  //2202620065
+    let idx = (x as u32).wrapping_mul(1359738876).wrapping_shr(18) as usize;
     sprp(x, FERMAT_BASE[idx] as u64, one,npi)
 
 }
 
 /// Fast primality in the worst case for all odd integers less than 1099620565341
 pub fn is_prime_wc(x: u64) -> bool{
+// SSMR passes some even composites due to the montgomery transform trick
   debug_assert!( (x != 0) && (x < 1099620565341) && ([1,4,14,16,18,90,418,1024,
                                      1248,1714,32208,48228,193152,
                                      456424,736232,749324,1659364,
@@ -94,6 +95,8 @@ pub fn is_prime_wc(x: u64) -> bool{
    core_primality(x)
 }
 
+// 1472,1892,1272,2998,173 {1248},27,3838,1573
+//
 /// Fast primality in the average case, for all integers less than 1099620565341
 pub fn is_prime(x: u64) -> bool{
 
