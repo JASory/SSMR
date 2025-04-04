@@ -1,6 +1,6 @@
 # SSMR
 
-WIP - Not all calculations are fully complete, will not be published to crates.io without them
+WIP - Not all calculations are fully complete, will not be published to crates.io without them. This algorithm has been integrated and superceded by machine-prime
 
 Single-Shot Miller-Rabin (SSMR) is an algorithm for primality testing using only a single strong fermat test to check if a number under a 
 certain bound is prime.Like the related [Machine-prime](https://github.com/JASory/machine-prime) two functions are provided, is_prime and is_prime_wc. 
